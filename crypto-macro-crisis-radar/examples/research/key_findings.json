@@ -1,0 +1,228 @@
+{
+  "latest_regime": {
+    "date": "2026-05-30",
+    "market_regime": "Neutral",
+    "final_risk_score_with_model": 36.93324366380556,
+    "rule_based_risk_score": 45.19362713329228,
+    "model_crisis_probability": 12.152093255345427
+  },
+  "model_architecture": {
+    "classifier_name": "Ablation-Selected Risk Classifier v1",
+    "classifier_feature_set": "refined_no_macro_engine",
+    "excluded_from_classifier": "macro_engine feature group",
+    "tuned_threshold": 0.36,
+    "reason_for_exclusion": "Ablation v2 showed that refined_no_macro_engine improved walk-forward ROC-AUC relative to the full feature set.",
+    "macro_engine_usage_note": "Macro Engine remains active in rule-based scoring, daily report, VAR, dashboard, and interpretation layers.",
+    "test_metrics_tuned_threshold": {
+      "threshold": 0.36,
+      "roc_auc": 0.6208602616036365,
+      "average_precision": 0.18198523519357607,
+      "brier_score": 0.1813360579363412,
+      "accuracy": 0.3643410852713178,
+      "balanced_accuracy": 0.6126348990383128,
+      "precision": 0.17721518987341772,
+      "recall": 0.958904109589041,
+      "f1": 0.29914529914529914,
+      "positive_prediction_rate": 0.7655038759689923,
+      "confusion_matrix": [
+        [
+          118,
+          325
+        ],
+        [
+          3,
+          70
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.9752066115702479,
+          "recall": 0.26636568848758463,
+          "f1-score": 0.41843971631205673,
+          "support": 443.0
+        },
+        "1": {
+          "precision": 0.17721518987341772,
+          "recall": 0.958904109589041,
+          "f1-score": 0.29914529914529914,
+          "support": 73.0
+        },
+        "accuracy": 0.3643410852713178,
+        "macro avg": {
+          "precision": 0.5762109007218328,
+          "recall": 0.6126348990383128,
+          "f1-score": 0.35879250772867793,
+          "support": 516.0
+        },
+        "weighted avg": {
+          "precision": 0.8623124763301925,
+          "recall": 0.3643410852713178,
+          "f1-score": 0.40156279295319375,
+          "support": 516.0
+        }
+      }
+    }
+  },
+  "most_adverse_event_types": [
+    {
+      "event_type": "narrative_shock",
+      "count": 4,
+      "avg_btc_return_7d": -0.0141815535801206,
+      "adverse_rate_7d": 0.5,
+      "signal_quality": "Mixed"
+    },
+    {
+      "event_type": "liquidity_stress",
+      "count": 21,
+      "avg_btc_return_7d": -0.0101075450668449,
+      "adverse_rate_7d": 0.5238095238095238,
+      "signal_quality": "Mixed"
+    },
+    {
+      "event_type": "risk_off_score",
+      "count": 48,
+      "avg_btc_return_7d": 0.0022775351830532,
+      "adverse_rate_7d": 0.5833333333333334,
+      "signal_quality": "Mixed"
+    },
+    {
+      "event_type": "inflation_pressure",
+      "count": 30,
+      "avg_btc_return_7d": 0.0074633467366001,
+      "adverse_rate_7d": 0.4666666666666667,
+      "signal_quality": "Mixed / neutral"
+    },
+    {
+      "event_type": "cross_asset_risk",
+      "count": 62,
+      "avg_btc_return_7d": 0.0106217891968649,
+      "adverse_rate_7d": 0.4677419354838709,
+      "signal_quality": "Mixed"
+    }
+  ],
+  "most_adverse_shocks_7d": [
+    {
+      "shock_name": "Model crisis probability shock",
+      "event_count": 50,
+      "avg_btc_return": -0.1064209787105354,
+      "btc_adverse_rate": 0.98,
+      "avg_risk_score_change": 1.1459635405525517
+    },
+    {
+      "shock_name": "Final model-adjusted risk shock",
+      "event_count": 50,
+      "avg_btc_return": -0.0457220807661927,
+      "btc_adverse_rate": 0.7,
+      "avg_risk_score_change": -4.657903029856646
+    },
+    {
+      "shock_name": "Rule-based risk shock",
+      "event_count": 51,
+      "avg_btc_return": -0.0249808774808372,
+      "btc_adverse_rate": 0.6470588235294118,
+      "avg_risk_score_change": -6.366685028573389
+    },
+    {
+      "shock_name": "High narrative breadth shock",
+      "event_count": 8,
+      "avg_btc_return": -0.019799980950489,
+      "btc_adverse_rate": 0.5,
+      "avg_risk_score_change": -8.551790320978865
+    },
+    {
+      "shock_name": "Oil volatility shock",
+      "event_count": 29,
+      "avg_btc_return": -0.0136572525153212,
+      "btc_adverse_rate": 0.6551724137931034,
+      "avg_risk_score_change": -3.0335997804364454
+    }
+  ],
+  "btc_var_robustness": [
+    {
+      "causing_variable": "d_final_risk",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "eth_ret_1d",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_crypto_stress",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_cross_asset",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_macro_engine",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_blended_narrative_risk",
+      "robustness": "Moderate / borderline",
+      "significant_count": 1,
+      "borderline_count": 2
+    },
+    {
+      "causing_variable": "d_liquidity_stress",
+      "robustness": "Weak",
+      "significant_count": 0,
+      "borderline_count": 0
+    }
+  ],
+  "eth_var_robustness": [
+    {
+      "causing_variable": "d_final_risk",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_crypto_stress",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_macro_engine",
+      "robustness": "Strong",
+      "significant_count": 3,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_liquidity_stress",
+      "robustness": "Moderate",
+      "significant_count": 2,
+      "borderline_count": 3
+    },
+    {
+      "causing_variable": "d_cross_asset",
+      "robustness": "Moderate",
+      "significant_count": 2,
+      "borderline_count": 2
+    },
+    {
+      "causing_variable": "btc_ret_1d",
+      "robustness": "Moderate / borderline",
+      "significant_count": 1,
+      "borderline_count": 2
+    },
+    {
+      "causing_variable": "d_blended_narrative_risk",
+      "robustness": "Weak",
+      "significant_count": 0,
+      "borderline_count": 0
+    }
+  ]
+}

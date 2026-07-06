@@ -1,0 +1,2 @@
+date,event_type,event_name,event_source,notes
+2022-11-08,manual_crypto_event,Example: FTX-related market stress,manual_template,Replace or delete this row. Add CPI/FOMC/ETF/regulatory events here.

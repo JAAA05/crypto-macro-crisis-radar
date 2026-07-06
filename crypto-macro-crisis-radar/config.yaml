@@ -1,0 +1,97 @@
+project:
+  name: crypto_macro_crisis_radar
+  timezone: America/Indiana/Indianapolis
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  features: data/features
+  models: models
+  reports: outputs/reports
+  scores: outputs/scores
+  charts: outputs/charts
+
+data:
+  start_date: "2017-01-01"
+  end_date: null
+
+  crypto:
+    vs_currency: usd
+    coins:
+      - bitcoin
+      - ethereum
+
+  macro_series:
+    vix: VIXCLS
+    treasury_10y: DGS10
+    treasury_2y: DGS2
+    fed_funds_rate: DFF
+    dollar_index_broad: DTWEXBGS
+    fed_balance_sheet: WALCL
+    m2_money_supply: M2SL
+    economic_policy_uncertainty: USEPUINDXM
+
+  macro_engine_series:
+    real_gdp: GDPC1
+    unemployment_rate: UNRATE
+    cpi: CPIAUCSL
+    core_cpi: CPILFESL
+    industrial_production: INDPRO
+    retail_sales: RSAFS
+    private_investment: GPDI
+    federal_surplus_deficit: MTSDS133FMS
+
+  cross_asset_series:
+    sp500: SP500
+    nasdaq: NASDAQCOM
+    gold: GOLDAMGBD228NLBM
+    oil_wti: DCOILWTICO
+
+  gdelt:
+    enabled: true
+    lookback_days: 30
+    max_records_per_day: 25
+    query: '(bitcoin OR cryptocurrency OR crypto OR ethereum OR stablecoin OR tether OR "digital assets" OR "crypto exchange")'
+
+  narrative_ai:
+    enabled: true
+    lookback_days: 30
+    max_records_per_day: 20
+    categories:
+      fed_policy:
+        query: '"Federal Reserve" OR Fed OR FOMC OR "interest rates" OR "monetary policy"'
+      inflation:
+        query: 'inflation OR CPI OR "consumer prices" OR disinflation OR "price pressures"'
+      recession:
+        query: 'recession OR slowdown OR "economic contraction" OR "hard landing" OR "soft landing"'
+      fiscal_policy:
+        query: '"fiscal policy" OR deficit OR debt OR "government spending" OR Treasury'
+      crypto_regulation:
+        query: 'crypto regulation OR SEC OR CFTC OR lawsuit OR enforcement OR "digital assets"'
+      exchange_risk:
+        query: 'crypto exchange OR Binance OR Coinbase OR Kraken OR insolvency OR withdrawals'
+      stablecoin_risk:
+        query: 'stablecoin OR USDT OR USDC OR depeg OR Tether OR Circle'
+      etf_institutional:
+        query: 'bitcoin ETF OR spot ETF OR BlackRock OR institutional crypto OR ETF flows'
+      geopolitical:
+        query: 'geopolitical OR war OR conflict OR sanctions OR Middle East OR China OR Russia'
+      market_sentiment:
+        query: 'risk assets OR market sentiment OR risk-off OR volatility OR selloff OR rally'
+
+targets:
+  mini_crisis_drawdown_7d: -0.07
+  crisis_drawdown_14d: -0.15
+
+scores:
+  weights:
+    macro_risk: 0.25
+    news_risk: 0.20
+    crypto_stress: 0.25
+    liquidity_stress: 0.15
+    anomaly: 0.15
+  regimes:
+    risk_on: 30
+    neutral: 50
+    risk_off: 70
+    mini_crisis_watch: 85
